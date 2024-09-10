@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ERP Dashboard</title>
+    <script>
+        async function fetchData() {
+            const response = await fetch('http://localhost:5000/data');
+            const data = await response.json();
+            const dataList = document.getElementById('data-list');
+            data.data.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `Sensor: ${item.sensor_id}, Timestamp: ${item.timestamp}, Value: ${item.value}`;
+                dataList.appendChild(listItem);
+            });
+        }
+        window.onload = fetchData;
+    </script>
+</head>
+<body>
+    <h1>ERP Dashboard</h1>
+    <ul id="data-list"></ul>
+</body>
+</html>
